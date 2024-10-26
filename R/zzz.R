@@ -15,6 +15,7 @@
 
 
 .onAttach <- function(libname, pkgname){
+  packageStartupMessage("WARNING: You are using a modified version of the yacca package.\n\n")
   temp<-packageDescription("yacca")
   msg<-paste(temp$Package,": ",temp$Title,"\n",
       "Version ",temp$Version,
