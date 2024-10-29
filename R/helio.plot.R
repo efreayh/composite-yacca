@@ -2,7 +2,7 @@
 function(c,cv=1,xvlab=c$xlab,yvlab=c$ylab,x.name="X Variables",y.name="Y Variables",lab.cex=1,wid.fact=0.75,main="Helio Plot",sub=paste("Canonical Variate",cv,sep=""),zero.rad=30,range.rad=20,name.padding=5,name.cex=1.5,axis.circ=c(-1,1),x.group=rep(0,dim(c$xstructcorr)[1]),y.group=rep(0,dim(c$ystructcorr)[1]),type="correlation"){
    #First, open up a new window
    plot.new()
-   plot.window(c(-100,100),c(-100,100))   #Assume, for convenience, a +-100 world
+   plot.window(c(-100,100),c(-100,100), asp = 1)   #Assume, for convenience, a +-100 world
    #Set the appropriate data, depending on whether this is a correlation or a variance plot
    if(type=="correlation"){
       xdat<-c$xstructcorr
@@ -24,8 +24,8 @@ function(c,cv=1,xvlab=c$xlab,yvlab=c$ylab,x.name="X Variables",y.name="Y Variabl
       for(i in 1:length(axis.circ))
          lines((mr+range.rad*axis.circ[i])*sin(2*pi*((0:100)/100)),(mr+range.rad*axis.circ[i])*cos(2*pi*((0:100)/100)),lty=3)
    #Label the two halves of the circle
-   text(-50,95,label=x.name,cex=name.cex)
-   text(50,95,label=y.name,cex=name.cex)
+   text(-125,95,label=x.name,cex=name.cex,pos=2)
+   text(125,95,label=y.name,cex=name.cex,pos=4)
    #Label the ranges
    #text(rep(0,6),c(-45,-25,-5,5,25,45),label=c(1,0,-1,-1,0,1),pos=c(rep(2,3),rep(4,3)),cex=0.85,offset=0.1)
    #Get the number of variables in each set
@@ -53,7 +53,14 @@ function(c,cv=1,xvlab=c$xlab,yvlab=c$ylab,x.name="X Variables",y.name="Y Variabl
       by[4]<-mr*cos(bang)+bwinc*sin(-bang)
       polygon(bx,by,col=bcol,lty=1)  #Draw the box
       #Next, place names
-      text(nr*sin(bang),nr*cos(bang),label=xvlab[i],srt=(3*pi/2-bang)*(360/(2*pi)),pos=2,cex=lab.cex)
+      text(
+         x = nr * sin(bang),
+         y = nr * cos(bang),
+         label = xvlab[i],
+         srt = (360 + 180 + 90 - (bang * 180 / pi)) %% 360,
+         adj = c(1, 0.5),
+         cex = lab.cex
+      )
    }
    #Place rectangles and names for the y (right) variables
    for(i in 1:ny){
@@ -77,7 +84,14 @@ function(c,cv=1,xvlab=c$xlab,yvlab=c$ylab,x.name="X Variables",y.name="Y Variabl
       by[4]<-mr*cos(bang)+bwinc*sin(-bang)
       polygon(bx,by,col=bcol,lty=1)  #Draw the box
       #Next, place names
-      text(nr*sin(bang),nr*cos(bang),label=yvlab[i],srt=(pi/2-bang)*(360/(2*pi)),pos=4,cex=lab.cex)
+      text(
+         x = nr * sin(bang),
+         y = nr * cos(bang),
+         label = yvlab[i],
+         srt = (360 + 90 - (bang * 180 / pi)) %% 360,
+         adj = c(0, 0.5),
+         cex = lab.cex
+      )
    }
    #Perform grouping for the X variables, if needed.  0 means ungrouped, numbers above it are grouped.
    if((!is.null(x.group))&(max(x.group)>0)){
