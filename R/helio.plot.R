@@ -47,12 +47,15 @@ function(c,cv=1,xvlab=c$xlab,yvlab=c$ylab,x.name="X Variables",y.name="Y Variabl
       #Place rectangles and names for the x (left) variables
       for(i in 1:nx){
          #First, place rectangles
-         if(xdat[i,cv[v]]>0)   #Set fill color - black if positive, unfilled if negative
+         if(xdat[i,cv[v]]>0) {  #Set fill color - black if positive, unfilled if negative
             bcol<-1
-         else
+            b_neg_wid_fact <- 1
+         }else{
             bcol<-NA
+            b_neg_wid_fact <- 1.5
+         }
          bang<-(-pi/(nx+1))*i   #Determine the angle
-         binc<-pi/(max(nx,ny)+1)*wid.fact/2
+         binc<-pi/(max(nx,ny)+1)*wid.fact/2 * b_neg_wid_fact
          bwinc<-ir*sin(binc)  #Determine the box width increment (based on binc at inner circle)
          bx<-vector()
          bx[1]<-variate_radius*sin(bang)-bwinc*cos(-bang)
@@ -78,12 +81,15 @@ function(c,cv=1,xvlab=c$xlab,yvlab=c$ylab,x.name="X Variables",y.name="Y Variabl
       #Place rectangles and names for the y (right) variables
       for(i in 1:ny){
          #First, place rectangles
-         if(ydat[i,cv[v]]>0)   #Set fill color - black if positive, unfilled if negative
+         if(ydat[i,cv[v]]>0) {  #Set fill color - black if positive, unfilled if negative
             bcol<-1
-         else
+            b_neg_wid_fact <- 1
+         }else{
             bcol<-NA
+            b_neg_wid_fact <- 1.5
+         }
          bang<-(pi/(ny+1))*i   #Determine the angle
-         binc<-pi/(max(nx,ny)+1)*wid.fact/2
+         binc<-pi/(max(nx,ny)+1)*wid.fact/2 * b_neg_wid_fact
          bwinc<-ir*sin(binc)  #Determine the box width increment (based on binc at inner circle)
          bx<-vector()
          bx[1]<-variate_radius*sin(bang)-bwinc*cos(-bang)
