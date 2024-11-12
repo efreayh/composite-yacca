@@ -1,8 +1,8 @@
 Package: yacca
 Type: Package
 Title: Yet Another Canonical Correlation Analysis Package
-Version: 1.4-2
-Date: 2022-03-08
+Version: 1.4-3
+Date: 2024-11-12
 Depends: R (>= 1.8.0), utils
 Suggests: RSpectra
 Author: Carter T. Butts <buttsc@uci.edu>

@@ -1,4 +1,46 @@
-# yacca
+# composite-yacca
+
+`composite-yacca` is a fork of the `yacca` package developed by Carter T. Butts. The fork extends the functionality of the `helio.plot` function, allowing the `cv` parameter to accept a vector specifying the canonical variates to include in the plot. 
+
+## Install
+
+Check your working directory in R with `getwd()`. Download the package [here](https://github.com/efreayh/composite-yacca/releases) and place it in your working directory. 
+
+Remove any existing `yacca` package installations:
+```
+remove.packages("yacca")
+```
+
+Install the `composite-yacca` package:
+```
+install.packages("yacca_1.4-3.tar.gz", repos = NULL, type = "source")
+```
+
+Load the library:
+```
+library(yacca)
+```
+
+## Example
+
+```
+helio.plot(
+    c = data,
+    cv = c(1,2,3),            # Plot the first 3 canonical variates
+    xvlab = x_labels,
+    yvlab = y_labels,
+    x.name = "X Label", 
+    y.name = "Y Label", 
+    main = "Helio Plot with Multiple Canonical Variates",
+    zero.rad = 20,            # Adjust for spacing of circles
+    range.rad = 12,           # Adjust for spacing of circles
+    lab.cex = 1,              # Adjust for variable label size
+    name.cex = 1              # Adjust for variable set label size
+)
+```
+&nbsp;
+
+# yacca (Original README)
 
 <!-- badges: start -->
 [![R build status](https://github.com/CarterButts/yacca/workflows/R-CMD-check/badge.svg)](https://github.com/CarterButts/yacca/actions)
