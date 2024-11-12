@@ -1,5 +1,5 @@
 `helio.plot` <-
-function(c,cv=1,xvlab=c$xlab,yvlab=c$ylab,x.name="X Variables",y.name="Y Variables",lab.cex=1,wid.fact=0.75,main="Helio Plot",sub=paste("Canonical Variate",ifelse(length(cv) > 1, "s ", " "),paste(cv, collapse=", "),sep=""),zero.rad=30,range.rad=20,name.padding=5,name.cex=1.5,axis.circ=NULL,x.group=NULL,y.group=NULL,type="correlation"){
+function(c,cv=1,xvlab=c$xlab,yvlab=c$ylab,x.name="X Variables",y.name="Y Variables",lab.cex=1,wid.fact=0.75,main="Helio Plot",sub=paste("Canonical Variate",ifelse(length(cv) > 1, "s ", " "),paste(cv, collapse=", "),sep=""),zero.rad=20,range.rad=12,name.padding=5,name.cex=1,axis.circ=NULL,x.group=NULL,y.group=NULL,type="correlation"){
    #Check if grouping is supported for provided number of canonical variates
    if (length(cv) != 1 && (!is.null(x.group) || !is.null(y.group))) {
       stop("Grouping is not supported for multiple canonical variates.\n")
@@ -27,8 +27,8 @@ function(c,cv=1,xvlab=c$xlab,yvlab=c$ylab,x.name="X Variables",y.name="Y Variabl
       for(i in 1:length(axis.circ))
          lines((mr+range.rad*axis.circ[i])*sin(2*pi*((0:100)/100)),(mr+range.rad*axis.circ[i])*cos(2*pi*((0:100)/100)),lty=3)
    #Label the two halves of the circle
-   text(-125,95,label=x.name,cex=name.cex,pos=2)
-   text(125,95,label=y.name,cex=name.cex,pos=4)
+   text(-125,95,label=x.name,cex=name.cex)
+   text(125,95,label=y.name,cex=name.cex)
    #Label the ranges
    #text(rep(0,6),c(-45,-25,-5,5,25,45),label=c(1,0,-1,-1,0,1),pos=c(rep(2,3),rep(4,3)),cex=0.85,offset=0.1)
    #Get the number of variables in each set
